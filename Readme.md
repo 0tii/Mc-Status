@@ -1,8 +1,8 @@
-# 🔎 Mc Status (npm package)
+# 🔎 Mc Server Info (NPM Package)
 
-Async node.js implementation of the UDP Minecraft Server Query Protocol and TCP Minecraft Server List Ping Protocol.
+Get data about a running minecraft server by either Status request or Query.
 
-After using implementations that either were bloated with functionality not suitable for my use-case, required some boilerplate like class instantiation and manual socket closing or were just way too abstracted for the small task they provide, I decided to prep up my own - plain - implementation of the UDP Server Query Protocol, as lined out by Dinnerbone in his [Original Blog Post](https://dinnerbone.com/blog/2011/10/14/minecraft-19-has-rcon-and-query/), as well as the [Server List Ping Protocol](https://wiki.vg/Server_List_Ping)  in a ~~purely functional manner~~ (only up to v1.1.0). I just want to call a single function and that's it - so I did it.
+Implementation of the UDP Server Query Protocol, as lined out by Dinnerbone in his [Original Blog Post](https://dinnerbone.com/blog/2011/10/14/minecraft-19-has-rcon-and-query/), as well as the [Server List Ping Protocol](https://wiki.vg/Server_List_Ping)  ~~in a purely functional manner~~ (only up to v1.1.0). I just want to call a single function and that's it - so I did it.
 
 # Requirements
 

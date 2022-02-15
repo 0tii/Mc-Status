@@ -1,16 +1,16 @@
 {
-  "name": "mc-status",
-  "version": "1.1.3",
-  "description": "Node.js implementation of the Minecraft Server Query and Status protocol",
+  "name": "mc-server-info",
+  "version": "1.1.4",
+  "description": "Get details about a minecraft server by either query or status ping.",
   "main": "dist/index",
   "scripts": {
     "test": ""
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/0tii/Mc-Status"
   },
-  "keywords": ["minecraft", "server", "status", "query"],
+  "keywords": ["minecraft", "server", "status", "query", "info"],
   "author": "Daniel H. Rauhut (0ti)",
   "license": "MIT"
 }
