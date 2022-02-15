@@ -1,0 +1,28 @@
+v1.1.3
+- improve package structure
+
+v1.1.2
+- improve MOTD display by removing placeholder characters
+- refactored status decode
+- updated project documentation to account for SLP implementation and older changes
+- preparations to publish to npm
+
+v1.1.1
+- serverStatus() now resolves to a queryFullStat()-compliant data map with as much of the required data as possible identified from the status response.
+- documentation for new functions
+- fixed versioning increment error in changelog where revision was incremented instead of minor.
+
+v1.1.0
+- implementation of Server List Ping Protocol as optional status query for non 'enable-query' java servers
+- receive json representation of server status
+- Packet class to wrap SLP-protocol-compliant packetbuffers
+- function-, class- and method-documentation
+- port defaults to 25565
+- parity-refactor between SLP and Query protocol implementations
+- general refactor
+
+v1.0.0
+Initial release.
+- query basic statistics of a query-enabled java minecraft server
+- query full statistics of a query-enabled java minecraft server
+- library documentation
