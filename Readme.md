@@ -15,15 +15,15 @@ In order to use `Server List Ping Protocol` (`serverStatus()`) the server must b
 # Installation
 
 ```
-npm i mc-status
+npm i mc-server-info
 ```
 
 # How to use
 
-No fancy instantiations or anything necessary, simply require `mc-status` and call the function(s) you need. You will receive a `Map` of the server data (or an error).
+No fancy instantiations or anything necessary, simply require `mc-status` and call the function(s) you need. You will receive a `Map` of the server data. It is important that you catch errors since all Errors and Exceptions are propagated back to you via promise rejections.
 
 ```javascript
-const { queryFullStat } = require('mc-status');
+const { queryFullStat } = require('mc-server-info');
 
 (async function () {
     try {
@@ -37,7 +37,7 @@ const { queryFullStat } = require('mc-status');
 ```
 
 ```javascript
-const { queryBasicStat } = require('mc-status');
+const { queryBasicStat } = require('mc-server-info');
 
 queryBasicStat({ host: "localhost", port: 56789, timeout: 6000 })
     .then((map)=>{
@@ -48,7 +48,7 @@ queryBasicStat({ host: "localhost", port: 56789, timeout: 6000 })
 ```
 
 ```javascript
-const { serverStatus } = require('mc-status');
+const { serverStatus } = require('mc-server-info');
 
 serverStatus({ host: "localhost", port: 56789, timeout: 6000 })
     .then((map)=>{

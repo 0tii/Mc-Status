@@ -1,5 +1,8 @@
+v1.1.5
+- package name fix in npm readme
+
 v1.1.4
-- Minor documentation changes require version increment for npm
+- minor documentation changes require version increment for npm
 
 v1.1.3
 - improve package structure
