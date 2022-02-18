@@ -14,6 +14,7 @@ const { Buffer } = require('buffer');
  */
 class Packet {
     constructor(stream = null) {
+        this.signed = false;
         if (stream == null)
             this.data = Buffer.alloc(0);
         else
@@ -30,14 +31,17 @@ class Packet {
      * Prepends the stream length as VarInt to the buffer, as required by the SLP protocol
      */
     sign() {
+        this._checkSigned();
         let byteLength = this.data.byteLength;
         this.data = Buffer.concat([this._toVarIntBuffer(byteLength), this.data]);
+        this.signed == true;
     }
     /**
      * Write an integer as VarInt to the buffer
      * @param {*} int The integer value to write to the packet as VarInt
      */
     writeVarInt(int) {
+        this._checkSigned();
         this.data = Buffer.concat([this.data, this._toVarIntBuffer(int)]);
     }
     /**
@@ -45,6 +49,7 @@ class Packet {
      * @param {*} int The integer to be written to the packet as Short
      */
     writeShort(int) {
+        this._checkSigned();
         let short = Buffer.alloc(2);
         short.writeUInt16BE(int);
         this.data = Buffer.concat([this.data, short]);
@@ -54,6 +59,7 @@ class Packet {
      * @param {*} str The string to be written to the packet as a bytelength-prepended string
      */
     writeString(str) {
+        this._checkSigned();
         let string = Buffer.from([str]);
         this.data = Buffer.concat([this.data, this._toVarIntBuffer(string.byteLength), string]);
     }
@@ -61,14 +67,14 @@ class Packet {
      * Read a VarInt from the beginning of the buffer
      * @returns integer representation of the VarInt 
      */
-    readVarInt(){
+    readVarInt() {
         return this._readVarInt(this.data);
     }
     /**
      * Read a VarInt and its length from the beginning of the buffer
      * @returns [] of integers, where [0] is value and [1] is bytelength
      */
-    readVarIntL(){
+    readVarIntL() {
         return this._readVarIntL(this.data);
     }
     /**
@@ -76,7 +82,7 @@ class Packet {
      * @param {*} index the start index of the VarInt to read
      * @returns integer representation of the VarInt
      */
-    readVarIntAt(index){
+    readVarIntAt(index) {
         let subset = this.data.slice(index);
         return this._readVarInt(subset);
     }
@@ -85,7 +91,7 @@ class Packet {
      * @param {*} index the start index of the VarInt to read
      * @returns [] of integers, where [0] is value and [1] is bytelength
      */
-    readVarIntLAt(index){
+    readVarIntLAt(index) {
         let subset = this.data.slice(index);
         return this._readVarIntL(subset);
     }
@@ -186,6 +192,15 @@ class Packet {
             if ((currentByte & 0x80) != 0x80) break;
         }
         return [value, length];
+    }
+    /**
+     * Check whether packet has been signed (prepended with its total stream length as varint) and throw error if so.
+     * Why? If the packet has been signed but will continue to be altered it will lose its integrity as the sign bytes (streamlength) will still exist within the byte stream.
+     */
+    _checkSigned() {
+        if (this.signed) {
+            throw new Error('Packet has already been signed but is being altered.');
+        }
     }
 }
 module.exports = Packet;

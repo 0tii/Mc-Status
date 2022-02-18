@@ -1,4 +1,4 @@
-exports.decodeFullStatPacket = function decodeFullStatPacket(msg){
+exports.decodeFullStatPacket = (msg) => {
     let data = msg.toString('utf-8', 11).split('\0\0\x01player_\0\0');
     let info = data[0].split('\0');
     let players = data[1].split('\0').slice(0, -2);
@@ -17,7 +17,7 @@ exports.decodeFullStatPacket = function decodeFullStatPacket(msg){
     return map;
 }
 
-exports.decodeBasicStatPacket = function decodeBasicStatPacket(msg){
+exports.decodeBasicStatPacket = (msg) =>{
     let data = msg.toString().split('\0'); 
     let map = {
         motd: data[2].substring(3).replace(/�.{1}/g, '').trim(),

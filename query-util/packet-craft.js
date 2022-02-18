@@ -1,7 +1,7 @@
 /**
  * @returns the handshake packet that signals the target host to dispatch a challenge token
  */
-exports.craftHandshakePacket = function craftHandshakePacket() {
+exports.craftHandshakePacket = () => {
     return Buffer.from(
         [
             0xFE, 0xFD, //Magic Bytes
@@ -13,7 +13,7 @@ exports.craftHandshakePacket = function craftHandshakePacket() {
 /**
  * @returns the packet for a full stat query sans challenge token
  */
-exports.craftFullStatPacket = function craftFullStatPacket() {
+exports.craftFullStatPacket = () => {
     let packet = Buffer.alloc(15);
     packet.writeUInt16BE(0xFEFD, 0); //Magic Bytes
     packet.writeUInt8(0x00, 2); //Request Type 'Query'
@@ -25,7 +25,7 @@ exports.craftFullStatPacket = function craftFullStatPacket() {
 /**
  * @returns the packet for a basic stat query sans challenge token
  */
-exports.craftBasicStatPacket = function craftBasicStatPacket() {
+exports.craftBasicStatPacket = () => {
     let packet = Buffer.alloc(11);
     packet.writeUInt16BE(0xFEFD, 0); //Magic Bytes
     packet.writeUInt8(0x00, 2); //Request Type 'Query'

@@ -70,7 +70,10 @@ async function makeQuery(host, packet) {
                 packet.writeInt32BE(challengeToken, 7); //write challenge token to packet
 
                 socket.send(packet, port, ip, (err) => {
-                    if (err) reject(new Error(err));
+                    if (err) {
+                        clearTimeout(timer);
+                        reject(new Error(err));
+                    }
                 });
             }
 
@@ -84,7 +87,10 @@ async function makeQuery(host, packet) {
 
         // send handshake to get challenge token
         socket.send(craftHandshakePacket(), port, ip, (err) => {
-            if (err) reject(new Error(err));
+            if (err) {
+                clearTimeout(timer);
+                reject(new Error(err));
+            }
         });
     });
 }

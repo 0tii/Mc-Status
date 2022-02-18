@@ -9,7 +9,7 @@ const { serverStatus } = require('./mc-server-status');
 const test1 = { host: 'play.alliummc.org', port: 25565, timeout: 5000 }; //expected: Status & Query
 const test2 = { host: '129.146.217.25', port: 25565 }; //expected: Status only
 
-const currentTest = test2;
+const currentTest = test1;
 
 /*
 you have to explicitly catch promise rejections when awaiting query and status, since any error is forwarded, be it connection, timeout or other expected or unexpected ones. 

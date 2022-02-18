@@ -49,19 +49,22 @@ exports.serverStatus = async (host) => {
                 try{
                     var json = JSON.parse(response.toString('utf-8'));
                 }catch(err){
+                    clearTimeout(timer);
                     reject(new Error('JSON parse error: Server sent unexpected data.'));
                 }
 
-                if(json?.version?.name == 'TCPShield.com') 
+                if(json?.version?.name == 'TCPShield.com'){
+                    clearTimeout(timer);
                     reject(new Error('Server is running behind TCPShield.'));
+                }
 
                 client.destroy();
-                clearTimeout(timer);
                 resolve(decodeStatus(host, json));
             }
         });
 
         client.on('error', (err) => {
+            clearTimeout(timer);
             client.end();
             reject(err);
         });

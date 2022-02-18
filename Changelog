@@ -1,3 +1,8 @@
+v1.2.0
+- packet.js sign safety check
+- fixed certain rejections not clearing timeout causing code execution delays
+- parity refactor query util exports
+
 v1.1.5
 - package name fix in npm readme
 

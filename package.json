@@ -1,6 +1,6 @@
 {
   "name": "mc-server-info",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "description": "Get details about a minecraft server by either query or status ping.",
   "main": "dist/index",
   "scripts": {
