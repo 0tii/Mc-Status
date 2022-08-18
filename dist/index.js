@@ -1,5 +1,5 @@
-const { queryBasicStat, queryFullStat } = require('./mc-server-query');
-const { serverStatus } = require('./mc-server-status');
+const { queryBasicStat, queryFullStat } = require('/mc-server-query.js');
+const { serverStatus } = require('/mc-server-status.js');
 
 exports.queryBasicStat = queryBasicStat;
 
